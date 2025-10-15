@@ -1,0 +1,223 @@
+.saint-george-categories {
+  width: 100%;
+  background-color: var(--color-background);
+  padding: 80px 0;
+}
+
+.categories-header {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.categories-title {
+  font-family: 'Cairo', sans-serif;
+  font-size: var(--font-size-32);
+  font-weight: var(--font-weight-regular);
+  color: var(--color-text-1);
+  margin: 0;
+  text-align: center;
+  letter-spacing: 0%;
+}
+
+.categories-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.category-card {
+  background-color: var(--color-white);
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+
+.category-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.category-card:hover .category-image-img {
+  transform: scale(1.05);
+}
+
+.category-icon {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 60px;
+  height: 60px;
+  z-index: 2;
+}
+
+.category-icon-image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.category-content {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.category-name {
+  font-family: 'Cairo', sans-serif;
+  font-size: var(--font-size-20);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-1);
+  margin: 0;
+  text-align: right;
+  line-height: 1.4;
+  letter-spacing: 0%;
+}
+
+.category-image-container {
+  width: 100%;
+  height: 200px;
+  border-radius: 12px;
+  overflow: hidden;
+  background-color: var(--color-background);
+}
+
+.category-image {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+.category-image-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+/* Category-specific styling */
+.bakery-sweets {
+  background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+}
+
+.dairy-cheese {
+  background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+}
+
+.seafood {
+  background: linear-gradient(135deg, #d299c2 0%, #fef9d7 100%);
+}
+
+.meat-poultry {
+  background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%);
+}
+
+.fresh-produce {
+  background: linear-gradient(135deg, #a8e6cf 0%, #dcedc1 100%);
+}
+
+.beverages {
+  background: linear-gradient(135deg, #ffd3a5 0%, #fd9853 100%);
+}
+
+.frozen-foods {
+  background: linear-gradient(135deg, #a1c4fd 0%, #c2e9fb 100%);
+}
+
+.canned-packaged-goods {
+  background: linear-gradient(135deg, #fbc2eb 0%, #a6c1ee 100%);
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .categories-grid {
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 24px;
+  }
+  
+  .categories-title {
+    font-size: 32px;
+  }
+}
+
+@media (max-width: 768px) {
+  .saint-george-categories {
+    padding: 60px 0;
+  }
+  
+  .categories-header {
+    margin-bottom: 40px;
+  }
+  
+  .categories-title {
+    font-size: 28px;
+  }
+  
+  .categories-grid {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+  }
+  
+  .category-card {
+    padding: 20px;
+  }
+  
+  .category-icon {
+    width: 50px;
+    height: 50px;
+    top: 15px;
+    right: 15px;
+  }
+  
+  .category-name {
+    font-size: 16px;
+  }
+  
+  .category-image-container {
+    height: 150px;
+  }
+}
+
+@media (max-width: 480px) {
+  .saint-george-categories {
+    padding: 40px 0;
+  }
+  
+  .categories-title {
+    font-size: 24px;
+  }
+  
+  .categories-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  
+  .category-card {
+    padding: 16px;
+  }
+  
+  .category-icon {
+    width: 40px;
+    height: 40px;
+    top: 12px;
+    right: 12px;
+  }
+  
+  .category-name {
+    font-size: 14px;
+  }
+  
+  .category-image-container {
+    height: 120px;
+  }
+}
