@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Saint George Market - E-commerce Website
 
 A modern, responsive e-commerce website built with React.js, featuring Arabic language support and a beautiful UI design.
@@ -182,3 +183,6 @@ For support or questions, please contact the development team.
 ---
 
 **Built with ❤️ for Saint George Market**
+=======
+# e-commerse-market
+>>>>>>> 4f1e17bd04954aa808c4f201c570bd0311383017
