@@ -17,7 +17,7 @@ function App() {
     <HelmetProvider>
       <LanguageProvider>
         <PerformanceMonitor />
-        <Router>
+        <Router basename="/e-commerse-market">
         <div className="App">
           <SaintGeorgeHeader />
           <main className="main-content">
