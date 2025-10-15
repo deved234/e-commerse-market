@@ -2,6 +2,7 @@ import React, { useState, useCallback, useMemo, useEffect } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useLanguage } from '../contexts/LanguageContext';
 import { t } from '../data/translations';
+import { getImagePath } from '../utils/imagePath';
 import './SaintGeorgeHeader.css';
 
 const SaintGeorgeHeader = React.memo(() => {
@@ -184,7 +185,7 @@ const SaintGeorgeHeader = React.memo(() => {
               <div className="language-selector" onClick={toggleLanguageDropdown}>
                 <span className="language-text">{language === 'ar' ? 'العربية' : 'English'}</span>
                 <img
-                  src="/iconamoonarrowup2light5391-pygq.svg"
+                  src={getImagePath("/iconamoonarrowup2light5391-pygq.svg")}
                   alt="language"
                   className="language-arrow"
                 />
@@ -194,7 +195,7 @@ const SaintGeorgeHeader = React.memo(() => {
             <div className="logo-section">
               <Link to="/" className="logo-link">
                 <div className="logo-container">
-                  <img src="/photos/logo.PNG" alt="Saint George Market Logo" className="header-logo-image" />
+                  <img src={getImagePath("/photos/logo.PNG")} alt="Saint George Market Logo" className="header-logo-image" />
                 </div>
               </Link>
             </div>
@@ -211,7 +212,7 @@ const SaintGeorgeHeader = React.memo(() => {
               <form className="search-form" onSubmit={handleSearch}>
                 <div className="search-box">
                   <img
-                    src="/materialsymbolslightsearch5329-9t2h.svg"
+                    src={getImagePath("/materialsymbolslightsearch5329-9t2h.svg")}
                     alt="search"
                     className="search-icon"
                   />
@@ -232,7 +233,7 @@ const SaintGeorgeHeader = React.memo(() => {
               <div className="nav-item others-nav-item" onClick={toggleOthers}>
                 <span className="nav-text">{t('others', language)}</span>
                 <img
-                  src="/fluentiosarrow24filled5329-qbri.svg"
+                  src={getImagePath("/fluentiosarrow24filled5329-qbri.svg")}
                   alt="arrow"
                   className="nav-arrow"
                 />
@@ -240,7 +241,7 @@ const SaintGeorgeHeader = React.memo(() => {
               <div className="nav-item categories-nav-item" onClick={toggleCategories}>
                 <span className="nav-text">{t('categories', language)}</span>
                 <img
-                  src="/fluentiosarrow24filled5329-qbri.svg"
+                  src={getImagePath("/fluentiosarrow24filled5329-qbri.svg")}
                   alt="arrow"
                   className="nav-arrow"
                 />

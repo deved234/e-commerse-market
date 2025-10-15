@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { useLanguage } from '../contexts/LanguageContext';
 import { t } from '../data/translations';
+import { getImagePath } from '../utils/imagePath';
 import './SaintGeorgeFooter.css';
 
 const SaintGeorgeFooter = () => {
@@ -17,10 +18,10 @@ const SaintGeorgeFooter = () => {
             </div>
             <div className="social-media">
               <a href="#" className="social-link" aria-label="Email">
-                <img src="/materialsymbolslightemail5391-ki0j.svg" alt="Email" />
+                <img src={getImagePath("/materialsymbolslightemail5391-ki0j.svg")} alt="Email" />
               </a>
               <a href="#" className="social-link" aria-label="Facebook">
-                <img src="/deviconplainfacebook5391-ki0j.svg" alt="Facebook" />
+                <img src={getImagePath("/deviconplainfacebook5391-ki0j.svg")} alt="Facebook" />
               </a>
             </div>
             <p className="copyright">

@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { useLanguage } from '../contexts/LanguageContext';
 import { t } from '../data/translations';
 import SEO from '../components/SEO';
+import { getImagePath } from '../utils/imagePath';
 import './Contact.css';
 
 const Contact = () => {
@@ -67,10 +68,10 @@ const Contact = () => {
                 <div className="about-section">
                   <div className="about-images">
                     <div className="about-image-grid">
-                      <img src="/unsplashqvkaqtnj4zki518-br8h-300w.png" alt="Market 1" className="about-img" />
-                      <img src="/unsplashxgffjkspknki518-pzl-300w.png" alt="Market 2" className="about-img" />
-                      <img src="/unsplashkraq7kfg7i8i518-ggk8-300w.png" alt="Market 3" className="about-img" />
-                      <img src="/unsplashx4zrlinfdqgi518-gny-300w.png" alt="Market 4" className="about-img about-img-large" />
+                      <img src={getImagePath("/unsplashqvkaqtnj4zki518-br8h-300w.png")} alt="Market 1" className="about-img" />
+                      <img src={getImagePath("/unsplashxgffjkspknki518-pzl-300w.png")} alt="Market 2" className="about-img" />
+                      <img src={getImagePath("/unsplashkraq7kfg7i8i518-ggk8-300w.png")} alt="Market 3" className="about-img" />
+                      <img src={getImagePath("/unsplashx4zrlinfdqgi518-gny-300w.png")} alt="Market 4" className="about-img about-img-large" />
                     </div>
                   </div>
                   <div className="about-text">
@@ -116,10 +117,10 @@ const Contact = () => {
                       <h3>{language === 'ar' ? 'وسائل التواصل' : 'Social Media'}</h3>
                       <div className="social-links">
                         <a href="#" className="social-link">
-                          <img src="/deviconplainfacebook5391-ki0j.svg" alt="Facebook" />
+                          <img src={getImagePath("/deviconplainfacebook5391-ki0j.svg")} alt="Facebook" />
                         </a>
                         <a href="#" className="social-link">
-                          <img src="/materialsymbolslightemail5391-ki0j.svg" alt="Email" />
+                          <img src={getImagePath("/materialsymbolslightemail5391-ki0j.svg")} alt="Email" />
                         </a>
                       </div>
                     </div>
@@ -142,7 +143,7 @@ const Contact = () => {
                     </div>
                   </div>
                   <div className="location-map">
-                    <img src="/photos/logo.PNG" alt="Saint George Market Location" className="map-image" />
+                    <img src={getImagePath("/photos/logo.PNG")} alt="Saint George Market Location" className="map-image" />
                   </div>
                 </div>
               </div>

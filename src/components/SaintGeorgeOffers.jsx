@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { useLanguage } from '../contexts/LanguageContext';
 import { t } from '../data/translations';
+import { getImagePath } from '../utils/imagePath';
 import './SaintGeorgeOffers.css';
 
 const SaintGeorgeOffers = () => {
@@ -44,7 +45,7 @@ const SaintGeorgeOffers = () => {
               <div className="offer-image">
                 <img src={offer.image} alt={offer.name} />
                 <div className="offer-tag">
-                  <img src="/iconamoonarrowup2light5391-pygq.svg" alt="tag" />
+                  <img src={getImagePath("/iconamoonarrowup2light5391-pygq.svg")} alt="tag" />
                 </div>
               </div>
               <div className="offer-content">
