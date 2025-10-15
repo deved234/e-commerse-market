@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { useLanguage } from '../contexts/LanguageContext';
 import { t } from '../data/translations';
+import { getImagePath } from '../utils/imagePath';
 import './SaintGeorgeBestSellers.css';
 
 const SaintGeorgeBestSellers = () => {
@@ -63,7 +64,7 @@ const SaintGeorgeBestSellers = () => {
           {bestSellers.map((product) => (
             <div key={product.id} className="bestseller-card">
               <div className="bestseller-image">
-                <img src={product.image} alt={product.name} />
+                <img src={getImagePath(product.image)} alt={product.name} />
               </div>
               <div className="bestseller-content">
                 <h3 className="bestseller-name">{product.name}</h3>

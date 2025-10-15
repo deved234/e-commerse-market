@@ -43,7 +43,7 @@ const SaintGeorgeOffers = () => {
           {offers.map((offer) => (
             <div key={offer.id} className="offer-card">
               <div className="offer-image">
-                <img src={offer.image} alt={offer.name} />
+                <img src={getImagePath(offer.image)} alt={offer.name} />
                 <div className="offer-tag">
                   <img src={getImagePath("/iconamoonarrowup2light5391-pygq.svg")} alt="tag" />
                 </div>

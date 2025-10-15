@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { useLanguage } from '../contexts/LanguageContext';
 import { t } from '../data/translations';
+import { getImagePath } from '../utils/imagePath';
 import './SaintGeorgeSuggestions.css';
 
 const SaintGeorgeSuggestions = () => {
@@ -39,7 +40,7 @@ const SaintGeorgeSuggestions = () => {
           {suggestions.map((suggestion) => (
             <div key={suggestion.id} className="suggestion-card">
               <div className="suggestion-image">
-                <img src={suggestion.image} alt={suggestion.name} />
+                <img src={getImagePath(suggestion.image)} alt={suggestion.name} />
               </div>
               <div className="suggestion-content">
                 <h3 className="suggestion-name">{suggestion.name}</h3>

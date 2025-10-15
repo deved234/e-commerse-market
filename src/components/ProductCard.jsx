@@ -5,6 +5,7 @@ import LazyImage from './LazyImage';
 import { useLanguage } from '../contexts/LanguageContext';
 import { t } from '../data/translations';
 import { categories } from '../data/sampleData';
+import { getImagePath } from '../utils/imagePath';
 import './ProductCard.css';
 
 const ProductCard = React.memo(({ product }) => {
@@ -45,7 +46,7 @@ const ProductCard = React.memo(({ product }) => {
       <Link to={`/product/${product.id}`} className="product-link">
         <div className="product-image-container">
           <LazyImage 
-            src={product.image} 
+            src={getImagePath(product.image)} 
             alt={product.name}
             className="product-image"
           />

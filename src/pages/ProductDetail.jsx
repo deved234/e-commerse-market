@@ -3,6 +3,7 @@ import { useParams, Link } from 'react-router-dom';
 import { products, categories } from '../data/sampleData';
 import { useLanguage } from '../contexts/LanguageContext';
 import { t } from '../data/translations';
+import { getImagePath } from '../utils/imagePath';
 import './ProductDetail.css';
 
 const ProductDetail = () => {
@@ -23,10 +24,10 @@ const ProductDetail = () => {
 
   // Product images - using multiple images for gallery
   const productImages = [
-    product.image,
-    "/unsplashx4zrlinfdqgi518-gny-300w.png",
-    "/unsplashkraq7kfg7i8i518-ggk8-300w.png",
-    "/unsplashltcybocukgci518-wnjq-300w.png"
+    getImagePath(product.image),
+    getImagePath("/unsplashx4zrlinfdqgi518-gny-300w.png"),
+    getImagePath("/unsplashkraq7kfg7i8i518-ggk8-300w.png"),
+    getImagePath("/unsplashltcybocukgci518-wnjq-300w.png")
   ];
   
   // Find category for display
