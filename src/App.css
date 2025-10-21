@@ -19,11 +19,11 @@ body {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  direction: rtl;
 }
 
 .main-content {
   flex: 1;
+  width: 100%;
   /* Remove padding-top since Saint George header is not fixed */
 }
 
@@ -31,7 +31,8 @@ body {
 .container {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 20px;
+  padding: 0 var(--space-20);
+  width: 100%;
 }
 
 /* Buttons */

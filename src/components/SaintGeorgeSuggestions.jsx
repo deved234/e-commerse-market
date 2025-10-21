@@ -2,31 +2,27 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { useLanguage } from '../contexts/LanguageContext';
 import { t } from '../data/translations';
+import { products } from '../data/sampleData';
 import { getImagePath } from '../utils/imagePath';
 import './SaintGeorgeSuggestions.css';
 
 const SaintGeorgeSuggestions = () => {
   const { language } = useLanguage();
-  const suggestions = [
-    {
-      id: 1,
-      name: "الخيار الفارسي",
-      category: "منتجات طازجة",
-      image: "/unsplashqvkaqtnj4zki518-br8h-300w.png"
-    },
-    {
-      id: 2,
-      name: "دجاج طازج كامل",
-      category: "اللحوم والدواجن",
-      image: "/unsplashxgffjkspknki518-pzl-300w.png"
-    },
-    {
-      id: 3,
-      name: "سمك مكريل مجمد",
-      category: "مأكولات بحرية",
-      image: "/unsplashkraq7kfg7i8i518-ggk8-300w.png"
-    }
-  ];
+  // Get recommended products based on various criteria
+  const suggestions = products
+    .filter(product => 
+      product.isNew || 
+      product.rating >= 4.5 || 
+      product.reviewCount >= 150 ||
+      product.category === 'منتجات طازجة' ||
+      product.category === 'Fresh Produce'
+    )
+    .sort((a, b) => {
+      const scoreA = (a.rating * 0.7) + (a.reviewCount / 100 * 0.3);
+      const scoreB = (b.rating * 0.7) + (b.reviewCount / 100 * 0.3);
+      return scoreB - scoreA;
+    })
+    .slice(0, 3);
 
   return (
     <section id="suggestions" className="saint-george-suggestions">
@@ -38,15 +34,37 @@ const SaintGeorgeSuggestions = () => {
         
         <div className="suggestions-grid">
           {suggestions.map((suggestion) => (
-            <div key={suggestion.id} className="suggestion-card">
-              <div className="suggestion-image">
-                <img src={getImagePath(suggestion.image)} alt={suggestion.name} />
-              </div>
-              <div className="suggestion-content">
-                <h3 className="suggestion-name">{suggestion.name}</h3>
-                <p className="suggestion-category">{suggestion.category}</p>
-                <button className="details-btn">{t('details', language)}</button>
-              </div>
+            <div key={suggestion.id} className="product-card">
+              <Link to={`/product/${suggestion.id}`} className="product-link">
+                <div className="product-image-container">
+                  <img src={getImagePath(suggestion.image)} alt={suggestion.name} className="product-image" />
+                  <div className="product-badge">
+                    {suggestion.isNew ? (
+                      <span className="new-badge">{t('new', language)}</span>
+                    ) : (
+                      <span className="rating-badge">⭐ {suggestion.rating}</span>
+                    )}
+                  </div>
+                </div>
+                
+                <div className="product-info">
+                  <h3 className="product-name">{suggestion.name}</h3>
+                  <p className="product-category">{suggestion.category}</p>
+                  
+                  <div className="product-rating">
+                    <div className="stars">
+                      {Array.from({ length: 5 }, (_, index) => (
+                        <span key={index} className={index < Math.floor(suggestion.rating) ? 'star filled' : 'star'}>⭐</span>
+                      ))}
+                    </div>
+                    <span className="rating-count">({suggestion.reviewCount})</span>
+                  </div>
+                  
+                  <div className="product-price">
+                    <span className="current-price">${suggestion.price}</span>
+                  </div>
+                </div>
+              </Link>
             </div>
           ))}
         </div>

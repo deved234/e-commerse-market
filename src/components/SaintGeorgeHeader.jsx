@@ -1,12 +1,12 @@
 import React, { useState, useCallback, useMemo, useEffect } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useLanguage } from '../contexts/LanguageContext';
+import { useToast } from '../contexts/ToastContext';
 import { t } from '../data/translations';
 import { getImagePath } from '../utils/imagePath';
 import './SaintGeorgeHeader.css';
 
 const SaintGeorgeHeader = React.memo(() => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isLanguageOpen, setIsLanguageOpen] = useState(false);
   const [isCategoriesOpen, setIsCategoriesOpen] = useState(false);
   const [isOthersOpen, setIsOthersOpen] = useState(false);
@@ -14,10 +14,8 @@ const SaintGeorgeHeader = React.memo(() => {
   const location = useLocation();
   const navigate = useNavigate();
   const { language, setLanguage, isRTL } = useLanguage();
+  const { showSuccess, showError } = useToast();
 
-  const toggleMenu = useCallback(() => {
-    setIsMenuOpen(prev => !prev);
-  }, []);
 
   const toggleCategories = useCallback(() => {
     setIsCategoriesOpen(prev => !prev);
@@ -73,9 +71,12 @@ const SaintGeorgeHeader = React.memo(() => {
     e.preventDefault();
     if (searchQuery.trim()) {
       navigate(`/products?search=${encodeURIComponent(searchQuery.trim())}`);
+      showSuccess(language === 'ar' ? 'تم البحث بنجاح!' : 'Search completed successfully!');
       setSearchQuery('');
+    } else {
+      showError(language === 'ar' ? 'يرجى إدخال كلمة البحث' : 'Please enter a search term');
     }
-  }, [searchQuery, navigate]);
+  }, [searchQuery, navigate, showSuccess, showError, language]);
 
   const handleSearchInputChange = useCallback((e) => {
     setSearchQuery(e.target.value);
@@ -257,12 +258,6 @@ const SaintGeorgeHeader = React.memo(() => {
         </div>
       </div>
 
-      {/* Mobile Menu Toggle */}
-      <button className="mobile-menu-toggle" onClick={toggleMenu}>
-        <span></span>
-        <span></span>
-        <span></span>
-      </button>
 
       {/* Categories Dropdown */}
       {isCategoriesOpen && categoriesDropdown}
@@ -270,16 +265,6 @@ const SaintGeorgeHeader = React.memo(() => {
       {/* Others Dropdown */}
       {isOthersOpen && othersDropdown}
 
-      {/* Mobile Menu */}
-      {isMenuOpen && (
-        <div className="mobile-menu">
-          <div className="mobile-menu-content">
-            <Link to="/" className="mobile-nav-link">{t('homepage', language)}</Link>
-            <Link to="/products" className="mobile-nav-link">{t('allCategories', language)}</Link>
-            <Link to="/contact" className="mobile-nav-link">{t('contact', language)}</Link>
-          </div>
-        </div>
-      )}
 
     </div>
   );

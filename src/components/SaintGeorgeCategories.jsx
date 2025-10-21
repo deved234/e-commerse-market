@@ -48,24 +48,28 @@ const SaintGeorgeCategories = () => {
         <div className="categories-grid">
           {categories.map((category) => (
             <Link key={category.id} to={`/category/${category.slug}`} className="category-card">
-              <div className="category-icon">
+              <div className="category-image-container">
                 <img
-                  src={categoryIcons[category.slug] || getImagePath('/ellipse14i518-3ai-300h.png')}
+                  src={categoryImages[category.slug] || getImagePath('/unsplashqvkaqtnj4zki518-br8h-300w.png')}
                   alt={category.name[language]}
-                  className="category-icon-image"
+                  className="category-image-img"
                 />
+                <div className="category-overlay">
+                  <div className="category-icon">
+                    <img
+                      src={categoryIcons[category.slug] || getImagePath('/ellipse14i518-3ai-300h.png')}
+                      alt={category.name[language]}
+                      className="category-icon-image"
+                    />
+                  </div>
+                </div>
               </div>
               
               <div className="category-content">
                 <h3 className="category-name">{category.name[language]}</h3>
-                <div className="category-image-container">
-                  <div className={`category-image ${category.slug}`}>
-                    <img
-                      src={categoryImages[category.slug] || getImagePath('/unsplashqvkaqtnj4zki518-br8h-300w.png')}
-                      alt={category.name[language]}
-                      className="category-image-img"
-                    />
-                  </div>
+                <p className="category-description">{category.description[language]}</p>
+                <div className="category-stats">
+                  <span className="product-count">{category.productCount} {language === 'ar' ? 'منتج' : 'products'}</span>
                 </div>
               </div>
             </Link>
