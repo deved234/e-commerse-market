@@ -2,6 +2,13 @@
   min-height: 100vh;
   background-color: var(--color-background);
   padding: var(--space-40) 0;
+  direction: rtl;
+  text-align: right;
+}
+
+[dir="ltr"] .suggestions-page {
+  direction: ltr;
+  text-align: left;
 }
 
 .page-header {
@@ -131,11 +138,15 @@
 
 .products-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   gap: var(--space-24);
   margin-bottom: var(--space-40);
   justify-items: center;
   align-items: start;
+  max-width: 1400px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0 var(--space-24);
 }
 
 .product-card {

@@ -33,14 +33,24 @@ const SaintGeorgeHeader = React.memo(() => {
     setIsOthersOpen(false);
   }, []);
 
+  // Enhanced close functions that also close other dropdowns
+  const closeAllDropdowns = useCallback(() => {
+    setIsCategoriesOpen(false);
+    setIsOthersOpen(false);
+    setIsLanguageOpen(false);
+  }, []);
+
   const toggleLanguageDropdown = useCallback(() => {
     setIsLanguageOpen(prev => !prev);
   }, []);
 
   const selectLanguage = useCallback((lang) => {
     setLanguage(lang);
-    setIsLanguageOpen(false);
-  }, [setLanguage]);
+    closeAllDropdowns();
+  }, [setLanguage, closeAllDropdowns]);
+
+
+  // No need for complex useEffect - we're using conditional rendering now
 
   // Close all dropdowns when clicking outside
   useEffect(() => {
@@ -82,80 +92,80 @@ const SaintGeorgeHeader = React.memo(() => {
     setSearchQuery(e.target.value);
   }, []);
 
-  // Memoize categories dropdown to prevent unnecessary re-renders
-  const categoriesDropdown = useMemo(() => (
+  // Categories dropdown
+  const categoriesDropdown = isCategoriesOpen ? (
     <div className="categories-dropdown">
       <div className="categories-dropdown-content">
-        <Link to="/category/fresh-produce" className="category-dropdown-link" onClick={closeCategories}>
+        <Link to="/category/fresh-produce" className="category-dropdown-link" onClick={closeAllDropdowns}>
           <span className="category-icon">🥬</span>
           {t('freshProduce', language)}
         </Link>
-        <Link to="/category/meat-poultry" className="category-dropdown-link" onClick={closeCategories}>
+        <Link to="/category/meat-poultry" className="category-dropdown-link" onClick={closeAllDropdowns}>
           <span className="category-icon">🥩</span>
           {t('meatPoultry', language)}
         </Link>
-        <Link to="/category/seafood" className="category-dropdown-link" onClick={closeCategories}>
+        <Link to="/category/seafood" className="category-dropdown-link" onClick={closeAllDropdowns}>
           <span className="category-icon">🐟</span>
           {t('seafood', language)}
         </Link>
-        <Link to="/category/dairy-cheese" className="category-dropdown-link" onClick={closeCategories}>
+        <Link to="/category/dairy-cheese" className="category-dropdown-link" onClick={closeAllDropdowns}>
           <span className="category-icon">🥛</span>
           {t('dairyCheese', language)}
         </Link>
-        <Link to="/category/bakery-sweets" className="category-dropdown-link" onClick={closeCategories}>
+        <Link to="/category/bakery-sweets" className="category-dropdown-link" onClick={closeAllDropdowns}>
           <span className="category-icon">🍰</span>
           {t('bakerySweets', language)}
         </Link>
-        <Link to="/category/spices-seasonings" className="category-dropdown-link" onClick={closeCategories}>
+        <Link to="/category/spices-seasonings" className="category-dropdown-link" onClick={closeAllDropdowns}>
           <span className="category-icon">🌶️</span>
           {t('spicesSeasonings', language)}
         </Link>
-        <Link to="/category/canned-foods" className="category-dropdown-link" onClick={closeCategories}>
+        <Link to="/category/canned-foods" className="category-dropdown-link" onClick={closeAllDropdowns}>
           <span className="category-icon">🥫</span>
           {t('cannedFoods', language)}
         </Link>
-        <Link to="/category/frozen-foods" className="category-dropdown-link" onClick={closeCategories}>
+        <Link to="/category/frozen-foods" className="category-dropdown-link" onClick={closeAllDropdowns}>
           <span className="category-icon">🧊</span>
           {t('frozenFoods', language)}
         </Link>
-        <Link to="/category/beverages" className="category-dropdown-link" onClick={closeCategories}>
+        <Link to="/category/beverages" className="category-dropdown-link" onClick={closeAllDropdowns}>
           <span className="category-icon">🥤</span>
           {t('beverages', language)}
         </Link>
-        <Link to="/category/nuts-seeds" className="category-dropdown-link" onClick={closeCategories}>
+        <Link to="/category/nuts-seeds" className="category-dropdown-link" onClick={closeAllDropdowns}>
           <span className="category-icon">🥜</span>
           {t('nutsSeeds', language)}
         </Link>
-        <Link to="/category/vegetables" className="category-dropdown-link" onClick={closeCategories}>
+        <Link to="/category/vegetables" className="category-dropdown-link" onClick={closeAllDropdowns}>
           <span className="category-icon">🥕</span>
           {t('vegetables', language)}
         </Link>
       </div>
     </div>
-  ), [language, closeCategories]);
+  ) : null;
 
-  // Memoize others dropdown to prevent unnecessary re-renders
-  const othersDropdown = useMemo(() => (
+  // Others dropdown
+  const othersDropdown = isOthersOpen ? (
     <div className="others-dropdown">
       <div className="others-dropdown-content">
-        <Link to="/bestsellers" className="others-dropdown-link" onClick={closeOthers}>
+        <Link to="/bestsellers" className="others-dropdown-link" onClick={closeAllDropdowns}>
           <span className="others-icon">🏆</span>
           {t('bestSellers', language)}
         </Link>
-        <Link to="/offers" className="others-dropdown-link" onClick={closeOthers}>
+        <Link to="/offers" className="others-dropdown-link" onClick={closeAllDropdowns}>
           <span className="others-icon">🎯</span>
           {t('offers', language)}
         </Link>
-        <Link to="/suggestions" className="others-dropdown-link" onClick={closeOthers}>
+        <Link to="/suggestions" className="others-dropdown-link" onClick={closeAllDropdowns}>
           <span className="others-icon">💡</span>
           {t('suggestions', language)}
         </Link>
       </div>
     </div>
-  ), [language, closeOthers]);
+  ) : null;
 
-  // Memoize language dropdown to prevent unnecessary re-renders
-  const languageDropdown = useMemo(() => (
+  // Language dropdown
+  const languageDropdown = isLanguageOpen ? (
     <div className="language-dropdown">
       <div className="language-dropdown-content">
         <button 
@@ -174,7 +184,7 @@ const SaintGeorgeHeader = React.memo(() => {
         </button>
       </div>
     </div>
-  ), [language, selectLanguage]);
+  ) : null;
 
   return (
     <div className="saint-george-header">
@@ -194,7 +204,7 @@ const SaintGeorgeHeader = React.memo(() => {
               {isLanguageOpen && languageDropdown}
             </div>
             <div className="logo-section">
-              <Link to="/" className="logo-link">
+              <Link to="/" className="logo-link" onClick={closeAllDropdowns}>
                 <div className="logo-container">
                   <img src={getImagePath("/photos/logo.PNG")} alt="Saint George Market Logo" className="header-logo-image" />
                 </div>
@@ -230,7 +240,7 @@ const SaintGeorgeHeader = React.memo(() => {
             
             {/* Navigation */}
             <div className="main-nav">
-              <Link to="/contact" className="nav-text">{t('contact', language)}</Link>
+              <Link to="/contact" className="nav-text" onClick={closeAllDropdowns}>{t('contact', language)}</Link>
               <div className="nav-item others-nav-item" onClick={toggleOthers}>
                 <span className="nav-text">{t('others', language)}</span>
                 <img
@@ -238,6 +248,7 @@ const SaintGeorgeHeader = React.memo(() => {
                   alt="arrow"
                   className="nav-arrow"
                 />
+                {isOthersOpen && othersDropdown}
               </div>
               <div className="nav-item categories-nav-item" onClick={toggleCategories}>
                 <span className="nav-text">{t('categories', language)}</span>
@@ -246,10 +257,12 @@ const SaintGeorgeHeader = React.memo(() => {
                   alt="arrow"
                   className="nav-arrow"
                 />
+                {isCategoriesOpen && categoriesDropdown}
               </div>
               <Link 
                 to="/" 
                 className={`nav-text ${location.pathname === '/' ? 'active' : ''}`}
+                onClick={closeAllDropdowns}
               >
                 {t('homepage', language)}
               </Link>
@@ -257,15 +270,6 @@ const SaintGeorgeHeader = React.memo(() => {
           </div>
         </div>
       </div>
-
-
-      {/* Categories Dropdown */}
-      {isCategoriesOpen && categoriesDropdown}
-
-      {/* Others Dropdown */}
-      {isOthersOpen && othersDropdown}
-
-
     </div>
   );
 });

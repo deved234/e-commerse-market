@@ -85,6 +85,7 @@ const Products = () => {
     setFilteredProducts(filtered);
   }, [filters]);
 
+
   const handleFilterChange = (key, value) => {
     setFilters(prev => ({ ...prev, [key]: value }));
   };

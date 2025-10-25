@@ -27,6 +27,7 @@ const ProductCard = React.memo(({ product }) => {
     setIsHovered(false);
   }, []);
 
+
   const renderStars = useMemo(() => {
     return (rating) => Array.from({ length: 5 }, (_, index) => (
       <Star
